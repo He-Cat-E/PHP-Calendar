@@ -111,8 +111,65 @@
     display: flex;
     text-align: center;
     font-weight: bold;
+    overflow-y: scroll;
 }
 .calendar #seemore a:hover{
     color: black;
 }
 
+:root {
+    --pink: #ff2581;
+}
+.icon_demo {
+    fill: transparent;
+    stroke: var(--pink);
+    stroke-width: 20;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    margin-top: 29px !important;
+    margin-bottom: 29px !important;
+}
+.icon_demo svg {
+    overflow: visible;
+    width: 7rem;
+}
+.icon_demo path {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1550;
+    transform-origin: center;
+}
+.heart-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    stroke: none;
+}
+.heart-main path {
+    animation: stroke-animation 2s ease-in-out forwards infinite;
+}
+@keyframes stroke-animation {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    30% {
+        stroke-dashoffset: 1550;
+    }
+    60% {
+        stroke-dashoffset: 3100;
+        fill: transparent;
+        transform: scale(1);
+    }
+    80% {
+        fill: var(--pink);
+        transform: scale(1.1);
+    }
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        stroke-dashoffset: 3100;
+        fill: var(--pink);
+    }
+}

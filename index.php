@@ -24,17 +24,26 @@
       </div>
     </nav>
 		<div class="content home">
-      <div class = "calendar">
+      <div class = "calendar" id = "calendar">
         <div class = "days" id = "calendar-header">
         </div>
         <div class = "days" id = "calendar-content">
         </div>
         <div id = "seemore"></div>
+        <div class="icon_demo" id = "heart_animation">
+          <svg class="heart-main" viewBox="0 0 512 512" width="100" title="heart">
+              <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+            </svg>
+          <svg class="heart-background" viewBox="0 0 512 512" width="100" title="heart">
+              <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+            </svg>
+      </div>
       </div>
 		</div>
 	</body>
 </html>
 <script>
+  document.getElementById('heart_animation').style.display = "none";
 
   let tempdata = [
     {
@@ -217,6 +226,7 @@
     document.getElementById('calendar-content').style.overflowY = "hidden";
     document.getElementById('calendar-header').style.overflowY = "hidden";
     document.getElementById('calendar-content').style.transition = "1s";
+    document.getElementById('seemore').style.overflowY = "hidden";
       for(let i = 0; i < 6; i++){
         html+= "<div onclick = 'showDetails()' class = 'see_more'><a href = '#'>see more</a></div>";
       }
@@ -246,12 +256,19 @@
   }
 
   function clickButton(type) {
-    if(type == -1){
-      currentdate.day = currentdate.day - 6;
-    }
-    else{
-      currentdate.day = currentdate.day + 6;
-    }
-    myFunction();
+    document.getElementById("seemore").innerHTML = "";
+    document.getElementById("heart_animation").style.display = "block";
+    document.getElementById('calendar-content').style.display = "none";
+    let heart_animation = setTimeout(() => {
+      document.getElementById("heart_animation").style.display = "none";
+      document.getElementById('calendar-content').style.display = "flex";
+      if(type == -1){
+        currentdate.day = currentdate.day - 6;
+      }
+      else{
+        currentdate.day = currentdate.day + 6;
+      }
+      myFunction();
+    }, 1500);
   }
 </script>
